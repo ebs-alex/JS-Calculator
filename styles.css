@@ -1,0 +1,29 @@
+* {
+    background-color: black;
+    color: bisque;
+    text-align: center;
+}
+
+body {
+    width: 100%;
+    height: 100rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title {
+    margin-bottom: 3rem;
+}
+
+.calculator {
+    width: 30%;
+    height: 40%;
+
+}
+
+.container {
+    border: 1px solid white;
+    border-radius: 10px;
+
+}
