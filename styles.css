@@ -16,18 +16,25 @@ body {
     margin-bottom: 3rem;
 }
 
-.calculator {
+#calculator {
     width: 27rem;
     height: 37rem;
 
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
+    border: 0.5px solid white;
+    /* border: none; */
+    background-color: rgba(28, 26, 26, 0.846);
 }
 
 .all-buttons-container {
     display: flex;
     flex-direction: column;
     height: 100%;
+    border-radius: 10px;
+    border: 1px solid white;
+    margin-top: 1rem;
 }
 
 
@@ -42,9 +49,6 @@ body {
 
 
 .display {
-    /* height:6rem; */
-    /* font-size: 3rem; */
-    /* align-items: center; */
     display: flex;
     flex-direction: column;
 }
@@ -68,7 +72,7 @@ body {
     justify-content: flex-start;
     gap: 0.82rem; 
     margin-top: 1rem;
-    /* padding-bottom: 0; */
+    padding-bottom: 0;
 }
 
 .grid {
