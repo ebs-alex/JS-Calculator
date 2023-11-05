@@ -24,6 +24,12 @@ body {
     flex-direction: column;
 }
 
+.all-buttons-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 
 
 .container {
@@ -36,16 +42,40 @@ body {
 
 
 .display {
-    height:6rem;
+    /* height:6rem; */
+    /* font-size: 3rem; */
+    /* align-items: center; */
+    display: flex;
+    flex-direction: column;
+}
+
+.display>p {
+    margin: 0;
+}
+
+.current-entry {
     font-size: 3rem;
+    text-align: start;
+}
+
+.previous-entries {
+    text-align: end;
 }
 
 .top-buttons {
-    justify-content: space-between;
+    /* border: 1px solid white; */
+    border: none;
+    justify-content: flex-start;
+    gap: 0.82rem; 
+    margin-top: 1rem;
+    /* padding-bottom: 0; */
 }
 
-.body-buttons {
+.grid {
+    border: none;
     height: 100%;
+    display: flex;
+    padding-top: 1rem;
 }
 
 .numbers-panel {
@@ -53,15 +83,18 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    
 }
 
 .side-buttons {
 
     /* flex: auto; */
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 2.33rem;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    /* justify-content: start; */
+    /* gap: 2.33rem; */
     margin-left: 1rem ;
 
 }
@@ -72,14 +105,27 @@ body {
     padding: 3px;
     border: 1px solid white;
     width: 5rem;
-    height: 3rem;
+    height: 3.5rem;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1rem;
 }
 
 .button:hover {
     background-color: bisque;
     color: black;
+}
+
+#n-0 {
+
+}
+
+#decimal {
+    
+}
+
+#n-equals {
+    /* margin-right: 3.5rem; */
 }
