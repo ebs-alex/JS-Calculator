@@ -17,13 +17,69 @@ body {
 }
 
 .calculator {
-    width: 30%;
-    height: 40%;
+    width: 27rem;
+    height: 37rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.container {
+    border-radius: 10px;
+    border: 1px solid white;
+    padding: 1rem;
+    display: flex;
+}
+
+
+
+.display {
+    height:6rem;
+    font-size: 3rem;
+}
+
+.top-buttons {
+    justify-content: space-between;
+}
+
+.body-buttons {
+    height: 100%;
+}
+
+.numbers-panel {
+    flex: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.side-buttons {
+
+    /* flex: auto; */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 2.33rem;
+    margin-left: 1rem ;
 
 }
 
-.container {
-    border: 1px solid white;
-    border-radius: 10px;
 
+
+.button {
+    padding: 3px;
+    border: 1px solid white;
+    width: 5rem;
+    height: 3rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover {
+    background-color: bisque;
+    color: black;
 }
