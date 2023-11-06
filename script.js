@@ -1,7 +1,4 @@
-const title  = document.querySelector("#title");
-title.style.textDecoration = "underline";
-title.style.textUnderlineOffset = "4px";
-title.style.textDecorationThickness = "1px";
+
 
 const currentEntry = document.querySelector(".current-entry");
 
@@ -27,9 +24,25 @@ pointBtn.addEventListener("click", pointSelection);
 const equalsBtn = document.querySelector("#equals");
 equalsBtn.addEventListener("click", equalsSelection);
 
+const posNegBtn = document.querySelector("#posNeg");
+posNegBtn.addEventListener("click", posNegSelection)
 
 
 
+let currentEquation = {
+    operand1: 0,
+    operator: "+",
+    operand2: 0,
+    result: 0
+}
+
+
+let previousEquation = {
+    operand1: 0,
+    operator: "+",
+    operand2: 0,
+    result: 0
+}
 
 
 ////functions
@@ -40,6 +53,10 @@ function numSelection(number) {
 
 function operatorSelection(operator) {
     currentEntry.textContent += operator.textContent;
+}
+
+function posNegSelection() {
+    console.log("+/-");
 }
 
 function pointSelection() {
