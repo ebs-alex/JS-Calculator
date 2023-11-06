@@ -67,12 +67,12 @@ body {
 }
 
 .top-buttons {
-    /* border: 1px solid white; */
     border: none;
-    justify-content: flex-start;
-    gap: 0.82rem; 
+    justify-content: center;
+    gap: 1.32rem; 
     margin-top: 1rem;
     padding-bottom: 0;
+    padding-left: 0;
 }
 
 .grid {
@@ -105,7 +105,7 @@ body {
 
 
 
-.button {
+button {
     padding: 3px;
     border: 1px solid white;
     width: 5rem;
@@ -117,9 +117,18 @@ body {
     font-size: 1rem;
 }
 
-.button:hover {
+button:hover {
     background-color: bisque;
     color: black;
+}
+
+button:active {
+    background-color: black;
+    color: bisque   ;
+}
+
+#backspace {
+    font-size: 0.8rem;
 }
 
 #n-0 {
