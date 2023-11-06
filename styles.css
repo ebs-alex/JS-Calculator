@@ -51,18 +51,22 @@ body {
 .display {
     display: flex;
     flex-direction: column;
+    height: 6rem;
 }
 
 .display>p {
     margin: 0;
+    /* height: 10%; */
 }
 
 .current-entry {
     font-size: 3rem;
     text-align: start;
+    height: 60px;
 }
 
 .previous-entries {
+    height: 20px;
     text-align: end;
 }
 
@@ -123,8 +127,9 @@ button:hover {
 }
 
 button:active {
+    border: 4px inset white;
     background-color: black;
-    color: bisque   ;
+    color: bisque;
 }
 
 #backspace {
