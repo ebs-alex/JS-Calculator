@@ -30,29 +30,61 @@ posNegBtn.addEventListener("click", posNegSelection)
 
 
 let currentEquation = {
-    operand1: 0,
-    operator: "+",
-    operand2: 0,
-    result: 0
+    operand1: "0",
+    operator: '',
+    operand2: '',
+    // result: 0
 }
 
 
-let previousEquation = {
-    operand1: 0,
-    operator: "+",
-    operand2: 0,
-    result: 0
-}
+// let previousEquation = {
+//     operand1: 0,
+//     operator: "+",
+//     operand2: 0,
+//     result: 0
+// }
 
+
+updateDisplay()
 
 ////functions
 
+function doNothing(message = "nothing is being done") {
+    console.log(message)
+}
+
+function updateDisplay() {
+    currentEntry.textContent = `${currentEquation.operand1} ${currentEquation.operator} ${currentEquation.operand2}`
+}
+
 function numSelection(number) {
-    currentEntry.textContent += number.textContent;
+    // currentEntry.textContent += number.textContent;
+
+    if (currentEquation.operator === '') {
+        if (currentEquation.operand1 === "0") {
+            currentEquation.operand1 = number.textContent    
+        } else {
+        currentEquation.operand1 += number.textContent
+        }
+    } else {
+        currentEquation.operand2 === '' ?
+        currentEquation.operand2 = number.textContent
+        : currentEquation.operand2 += number.textContent
+    }
+
+    updateDisplay()
 }
 
 function operatorSelection(operator) {
-    currentEntry.textContent += operator.textContent;
+
+    if (currentEquation.operand2 === '') {
+        currentEquation.operator = operator.textContent
+    } else {
+        doNothing("in future this will trigger 'computation' ")
+    }
+
+    updateDisplay()
+
 }
 
 function posNegSelection() {
@@ -68,11 +100,34 @@ function equalsSelection() {
 };
 
 function backspaceEvent() {
-    console.log("backspace")
+    
+    if (currentEquation.operator === '') {
+        if (currentEquation.operand1 === '0' || currentEquation.operand1.length === 1) {
+            currentEquation.operand1 = '0'
+            doNothing("backspace on operand1 == '0' ")
+        } else {
+            currentEquation.operand1 = currentEquation.operand1.slice(0,-1)
+        }
+    } else if (currentEquation.operand2 === '') {
+        currentEquation.operator = '';
+    } else {
+        if (currentEquation.operand2.length > 1) {
+            currentEquation.operand2 = currentEquation.operand2.slice(0,-1)
+        } else {
+            currentEquation.operand2 = ''
+        }
+    }
+
+    updateDisplay()
+
 }
 
 function allClear() {
-    currentEntry.textContent = ""
+    currentEquation.operand1 = '0'
+    currentEquation.operand2 = ''
+    currentEquation.operator = ''
+
+    updateDisplay()
 }
 
 
