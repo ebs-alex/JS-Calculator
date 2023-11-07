@@ -34,7 +34,6 @@ let currentEquation = {
     operand1: "0",
     operator: '',
     operand2: '',
-    maxChars: 16,
     currentChars: 1,
     computationMade: false,
     compute() {
@@ -107,6 +106,11 @@ function numSelection(number) {
 
 function operatorSelection(operator) {
 
+    if (currentEquation.operand1.charAt(currentEquation.operand1.length-1) === ".") {
+        currentEquation.operand1 = currentEquation.operand1.slice(0,-1)
+    }
+
+
     if (currentEquation.operand2 === '') {
         currentEquation.operator = operator.textContent
     } else {
@@ -158,10 +162,14 @@ function pointSelection() {
 
 function equalsSelection() {
 
+    if (currentEquation.operand2.charAt(currentEquation.operand2.length-1) === ".") {
+        currentEquation.operand2 = currentEquation.operand2.slice(0,-1)
+    }
+
     if (currentEquation.operator !== '' && currentEquation.operand2 !== '') {
         let result = Math.round((currentEquation.compute()+ Number.EPSILON) * 100) / 100  
         previousEntries.textContent = `${currentEquation.operand1} ${currentEquation.operator} ${currentEquation.operand2}`;
-        currentEquation.operand1 = result
+        currentEquation.operand1 = String(result)
         currentEquation.computationMade = true
         currentEquation.operand2 = ''
         currentEquation.operator = ''
@@ -177,8 +185,7 @@ function backspaceEvent() {
 
     if (currentEquation.operator === '') {
         if (currentEquation.operand1 === '0' || currentEquation.operand1.length === 1) {
-            currentEquation.operand1 = '0';
-            doNothing("backspace on operand1 == '0' ")
+            allClear()
         } else {
             currentEquation.operand1 = currentEquation.operand1.slice(0,-1)
         }
