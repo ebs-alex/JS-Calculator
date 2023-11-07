@@ -34,6 +34,9 @@ let currentEquation = {
     operand1: "0",
     operator: '',
     operand2: '',
+    maxChars: 16,
+    currentChars: 1,
+    computationMade: false,
     compute() {
         switch (this.operator) {
             case "-":
@@ -54,9 +57,6 @@ let currentEquation = {
     }
 }
 
-// let operand1 = currentEquation.operand1;
-// let operand2 = currentEquation.operand2;
-// let operator = currentEquation.operator;
 
 // let previousEquation = {
 //     operand1: 0,
@@ -81,18 +81,27 @@ function updateDisplay() {
 function numSelection(number) {
     // currentEntry.textContent += number.textContent;
 
+    
+
     if (currentEquation.operator === '') {
+        if (currentEquation.currentChars >= 11) {
+            return
+        }
         if (currentEquation.operand1 === "0") {
             currentEquation.operand1 = number.textContent    
         } else {
         currentEquation.operand1 += number.textContent
         }
     } else {
+        if (currentEquation.currentChars >= 14) {
+            return
+        }
         currentEquation.operand2 === '' ?
         currentEquation.operand2 = number.textContent
         : currentEquation.operand2 += number.textContent
     }
 
+    currentEquation.currentChars++
     updateDisplay()
 }
 
@@ -101,32 +110,65 @@ function operatorSelection(operator) {
     if (currentEquation.operand2 === '') {
         currentEquation.operator = operator.textContent
     } else {
-        doNothing("in future this will trigger 'computation' ")
+        equalsSelection()
     }
 
+    currentEquation.currentChars++
     updateDisplay()
 
 }
 
 function posNegSelection() {
-    console.log("+/-");
+
+    if (currentEquation.operator === '' && currentEquation.operand1 != '0') {
+        if (currentEquation.operand1.charAt(0) !== '-') {
+            currentEquation.operand1 = `-${currentEquation.operand1}`
+        }
+    } else if (currentEquation.operator !== '') {
+        if (currentEquation.operand2 !== '' & currentEquation.operand2 !== '0') {
+            if (currentEquation.operand2.charAt(0) !== '-') {
+                currentEquation.operand2 = `-${currentEquation.operand2}`     
+            }
+        }
+    }
+    currentEquation.currentChars++
+    updateDisplay()
 }
 
 function pointSelection() {
     console.log(".");
+
+    if (currentEquation.operator === '') {
+        if (currentEquation.operand1 == '0'){
+            currentEquation.operand1 = '0.'
+        } else if (!currentEquation.operand1.includes('.')) {
+            currentEquation.operand1 += '.'
+        }
+    } else {
+        if (currentEquation.operand2 == ''){
+            currentEquation.operand2 = '0.'
+        } else if (!currentEquation.operand2.includes('.')) {
+            currentEquation.operand2 += '.'
+        }
+    }
+
+    currentEquation.currentChars++
+    updateDisplay()
 };
 
 function equalsSelection() {
 
     if (currentEquation.operator !== '' && currentEquation.operand2 !== '') {
-        let result = currentEquation.compute()
+        let result = Math.round((currentEquation.compute()+ Number.EPSILON) * 100) / 100  
         previousEntries.textContent = `${currentEquation.operand1} ${currentEquation.operator} ${currentEquation.operand2}`;
         currentEquation.operand1 = result
+        currentEquation.computationMade = true
         currentEquation.operand2 = ''
         currentEquation.operator = ''
+        currentEquation.currentChars = String(currentEquation.operand1).length;
     };
 
-
+    
     updateDisplay();
 
 };
@@ -150,17 +192,20 @@ function backspaceEvent() {
         }
     }
 
+    currentEquation.currentChars--
     updateDisplay()
 
 }
 
 function allClear() {
-    currentEquation.operand1 = '0'
-    currentEquation.operand2 = ''
-    currentEquation.operator = ''
-    previousEntries.textContent = ''
+    currentEquation.operand1 = '0';
+    currentEquation.operand2 = '';
+    currentEquation.operator = '';
+    currentEquation.computationMade = false;
+    currentEquation.currentChars = 1;
+    previousEntries.textContent = '';
 
-    updateDisplay()
+    updateDisplay();
 }
 
 
